@@ -24,11 +24,20 @@ def get_gemini_response(user_input):
 
 # Streamlit UI
 st.title("TumbuhSehat Chatbot")
+st.subheader("🚀 Aplikasi TumbuhSehat akan segera hadir dalam versi mobile! Nantikan, Anda dapat menggunakan fitur Scan Makanan langsung dari ponsel Anda! 📱✨")
+
+with st.expander("ℹ️ Apa yang dapat dilakukan chatbot ini?"):
+    st.write("Chatbot TumbuhSehat dapat memberikan informasi tentang:")
+    st.markdown("- 🏥 **Informasi umum aplikasi TumbuhSehat**")
+    st.markdown("- 🎯 **Tujuan dan Manfaat aplikasi TumbuhSehat**")
+    st.markdown("- 🔧 **Fitur aplikasi TumbuhSehat**")
+    st.markdown("- 🖥️ **Teknologi yang digunakan dalam aplikasi TumbuhSehat**")
+    st.markdown("- 🍽️ **Rekomendasi makanan sehat untuk ibu hamil dan anak usia di bawah 13 tahun**")
+
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    # Kirim pesan "Halo" secara otomatis saat pertama kali dibuka
-    first_message = "Halo"
+    first_message = "Halo, apa saja yang bisa anda lakukan?"
     first_response = get_gemini_response(first_message)
     st.session_state.messages.append({"role": "user", "content": first_message})
     st.session_state.messages.append({"role": "bot", "content": first_response})
