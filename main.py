@@ -4,6 +4,13 @@ import google.generativeai as genai
 API_KEY = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=API_KEY)
 
+replace_terms_TumbuhSehat = ["tumbuh sehat", "Tumbuh Sehat", "Tumbuh sehat", "tumbuh Sehat", "TUMBUHSEHAT", "tumbuhsehat", "TUMBUH SEHAT"]
+
+def replace_keywords(text, replacements, replacement_value):
+    for term in replacements:
+        text = text.replace(term, replacement_value)
+    return text
+
 # Inisialisasi model Gemini
 generation_config = {
   "temperature": 1,
@@ -48,11 +55,13 @@ for msg in st.session_state.messages:
     else:
         st.chat_message("assistant").markdown(msg["content"])
 
-user_input = st.chat_input("Ketik pesan...")
+user_input = st.chat_input("Ketik pesan....")
 if user_input:
     st.chat_message("user").markdown(user_input)
     st.session_state.messages.append({"role": "user", "content": user_input})
     
-    response = get_gemini_response(user_input + "Jika ada kata yang mirip seperti tumbuh sehat, maka yang dimaksud adalah aplikasi TumbuhSehat")
+    user_input = replace_keywords(user_input, replace_terms_TumbuhSehat, "TumbuhSehat")
+    response = get_gemini_response(user_input)
     st.chat_message("assistant").markdown(response)
     st.session_state.messages.append({"role": "bot", "content": response})
+
