@@ -37,7 +37,7 @@ with st.expander("ℹ️ Apa yang dapat dilakukan chatbot ini?"):
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    first_message = "Halo, apa saja yang bisa anda lakukan?"
+    first_message = "Halo, apa saja yang bisa anda lakukan? dan apa itu TumbuhSehat?"
     first_response = get_gemini_response(first_message)
     st.session_state.messages.append({"role": "user", "content": first_message})
     st.session_state.messages.append({"role": "bot", "content": first_response})
