@@ -53,6 +53,6 @@ if user_input:
     st.chat_message("user").markdown(user_input)
     st.session_state.messages.append({"role": "user", "content": user_input})
     
-    response = get_gemini_response(user_input)
+    response = get_gemini_response(user_input + "Jika ada kata yang mirip seperti tumbuh sehat, maka yang dimaksud adalah aplikasi TumbuhSehat")
     st.chat_message("assistant").markdown(response)
     st.session_state.messages.append({"role": "bot", "content": response})
